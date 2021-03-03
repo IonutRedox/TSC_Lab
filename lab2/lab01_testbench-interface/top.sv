@@ -7,18 +7,9 @@ module top;
 
   // user-defined types are defined in instr_register_pkg.sv
   import instr_register_pkg::*;
-
   // clock variables
   logic clk;
   logic test_clk;
-
-  // interconnecting signals
-  logic          load_en;
-  logic          reset_n;
-  opcode_t       opcode;
-  operand_t      operand_a, operand_b;
-  address_t      write_pointer, read_pointer;
-  instruction_t  instruction_word;
 
   // instantiate testbench and connect ports
   instr_register_test test (
