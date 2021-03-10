@@ -1,7 +1,6 @@
+#ignore all
 *
-!.gitattributes
+except
 !.gitignore
-!readme.md
-!.gitkeep
 !*.sv
-!*/
+lab3/tools
