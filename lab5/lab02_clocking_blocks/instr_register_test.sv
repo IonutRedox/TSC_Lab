@@ -10,39 +10,19 @@
  * www.sutherland-hdl.com
  **********************************************************************/
 
-
 module instr_register_test (tb_ifc ifc);  // interface port
   timeunit 1ns/1ns;
 
   // user-defined types are defined in instr_register_pkg.sv
   import instr_register_pkg::*;
-  import instr_register_test_pkg::Driver;
-  import instr_register_test_pkg::Monitor;
+  import instr_register_test_pkg::*;
 
- 
   int seed = 555;
-
   Driver driver;
-  Monitor monitor;
 
   initial begin
     driver = new(ifc);
-    monitor = new(ifc);
-
-    driver.testbench_info();
-    driver.init_signals();
-
-    $display("\nWriting values to register stack...");
-    @ifc.cb ifc.cb.load_en <= 1'b1;  // enable writing to register
-    repeat (3) begin
-      driver.drive_transaction();
-    end
-    @ifc.cb ifc.cb.load_en <= 1'b0;  // turn-off writing to register
-
-    monitor.read_registers();
-
-    @ifc.cb;
-    driver.testbench_info();
+    driver.drive();
 
     $finish;
   end

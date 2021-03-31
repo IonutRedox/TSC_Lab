@@ -2,9 +2,7 @@
 ../../lab2/lab_dut/instr_register.sv   	                +incdir+../../lab_dut
 
 ../lab02_clocking_blocks/instr_register_test_pkg.sv                    +incdir+../lab02_clocking_blocks
-../lab02_clocking_blocks/transaction.sv                    +incdir+../lab02_clocking_blocks
-../lab02_clocking_blocks/driver.sv                    +incdir+../lab02_clocking_blocks
-../lab02_clocking_blocks/monitor.sv                    +incdir+../lab02_clocking_blocks
+
 ../lab02_clocking_blocks/instr_register_test.sv                    +incdir+../lab02_clocking_blocks
 ../lab02_clocking_blocks/tb_ifc.sv                    +incdir+../lab02_clocking_blocks
 ../lab02_clocking_blocks/top.sv                    +incdir+../lab02_clocking_blocks

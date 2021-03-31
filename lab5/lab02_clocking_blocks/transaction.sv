@@ -6,10 +6,8 @@
  * Tualatin, Oregon, USA.  All rights reserved.
  * www.sutherland-hdl.com
  **********************************************************************/
-import instr_register_pkg::*;
-
+ 
 class Transaction;
-  int seed = 555;
   opcode_t       opcode;
   operand_t      operand_a, operand_b;
   address_t      write_pointer, read_pointer;

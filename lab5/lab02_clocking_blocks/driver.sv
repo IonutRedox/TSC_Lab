@@ -6,17 +6,16 @@
  * Tualatin, Oregon, USA.  All rights reserved.
  * www.sutherland-hdl.com
  **********************************************************************/
-import instr_register_pkg::*;
-import instr_register_test_pkg::*;
-typedef class Transaction;
 
  class Driver;
     Transaction transaction;
+    Monitor monitor;
     virtual tb_ifc vifc;
 
     function new(virtual tb_ifc new_ifc);
         vifc = new_ifc;
         transaction = new();
+        monitor = new(vifc);
     endfunction
 
     function void testbench_info;
@@ -46,6 +45,21 @@ typedef class Transaction;
         vifc.cb.opcode <= transaction.opcode;
         vifc.cb.write_pointer <= transaction.write_pointer;
         vifc.cb.read_pointer <= transaction.read_pointer;
+    endtask
+
+    task drive;
+       testbench_info();
+       init_signals();
+
+       $display("\nWriting values to register stack...");
+       @vifc.cb vifc.cb.load_en <= 1'b1;  // enable writing to register
+       repeat (3) begin
+          drive_transaction();
+       end
+       @vifc.cb vifc.cb.load_en <= 1'b0;  // turn-off writing to register
+       monitor.read_registers();
+       @vifc.cb;
+       testbench_info();
     endtask
 
  endclass 
