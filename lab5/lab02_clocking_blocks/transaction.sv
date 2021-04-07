@@ -10,7 +10,7 @@
 class Transaction;
   opcode_t       opcode;
   operand_t      operand_a, operand_b;
-  address_t      write_pointer, read_pointer;
+  address_t      write_pointer;
 
  function void randomize_transaction;
     // A later lab will replace this function with SystemVerilog
@@ -21,10 +21,10 @@ class Transaction;
     // write_pointer values in a later lab
     //
     static int temp = 0;
-    operand_a     <= $random(seed)%16;                 // between -15 and 15
-    operand_b     <= $unsigned($random)%16;            // between 0 and 15
-    opcode        <= opcode_t'($unsigned($random)%8);  // between 0 and 7, cast to opcode_t type
-    write_pointer <= temp++;
+    operand_a     = $random(seed)%16;                 // between -15 and 15
+    operand_b     = $unsigned($random)%16;            // between 0 and 15
+    opcode        = opcode_t'($unsigned($random)%8);  // between 0 and 7, cast to opcode_t type
+    write_pointer = temp++;
   endfunction
 
   function void print_transaction;

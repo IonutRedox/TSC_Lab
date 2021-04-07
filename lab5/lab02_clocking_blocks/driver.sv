@@ -38,13 +38,11 @@
 
     task drive_transaction;
         @(vifc.cb) transaction.randomize_transaction;
-        @(vifc.cb) transaction.print_transaction;
-        
         vifc.cb.operand_a <= transaction.operand_a;
         vifc.cb.operand_b <= transaction.operand_b;
         vifc.cb.opcode <= transaction.opcode;
         vifc.cb.write_pointer <= transaction.write_pointer;
-        vifc.cb.read_pointer <= transaction.read_pointer;
+        @(vifc.cb) transaction.print_transaction;
     endtask
 
     task drive;
